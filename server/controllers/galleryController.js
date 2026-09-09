@@ -31,10 +31,17 @@ const getGalleryById = async (req, res, next) => {
 // Create gallery item
 const createGallery = async (req, res, next) => {
   try {
-    const { title, image, description, status } = req.body;
+    const {
+      title,
+      category,
+      image,
+      description,
+      status,
+    } = req.body;
 
     const galleryItem = await Gallery.create({
       title,
+      category,
       image,
       description,
       status,
@@ -73,7 +80,9 @@ const updateGallery = async (req, res, next) => {
 // Delete gallery item
 const deleteGallery = async (req, res, next) => {
   try {
-    const galleryItem = await Gallery.findByIdAndDelete(req.params.id);
+    const galleryItem = await Gallery.findByIdAndDelete(
+      req.params.id
+    );
 
     if (!galleryItem) {
       return res.status(404).json({

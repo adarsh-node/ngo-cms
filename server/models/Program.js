@@ -14,9 +14,22 @@ const programSchema = new mongoose.Schema(
       trim: true,
     },
 
+    category: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    icon: {
+      type: String,
+      default: "BookOpen",
+      trim: true,
+    },
+
     image: {
       type: String,
       default: "",
+      trim: true,
     },
 
     status: {

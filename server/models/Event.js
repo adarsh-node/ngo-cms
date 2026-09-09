@@ -14,6 +14,12 @@ const eventSchema = new mongoose.Schema(
       trim: true,
     },
 
+    category: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
     date: {
       type: Date,
       required: true,
@@ -28,6 +34,7 @@ const eventSchema = new mongoose.Schema(
     image: {
       type: String,
       default: "",
+      trim: true,
     },
 
     status: {

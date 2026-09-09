@@ -8,9 +8,21 @@ const newsSchema = new mongoose.Schema(
       trim: true,
     },
 
+    category: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
     description: {
       type: String,
       required: true,
+      trim: true,
+    },
+
+    excerpt: {
+      type: String,
+      default: "",
       trim: true,
     },
 

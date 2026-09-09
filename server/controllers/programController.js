@@ -13,14 +13,16 @@ const getPrograms = async (req, res, next) => {
 
 const createProgram = async (req, res, next) => {
   try {
-    const { title, description, image, status } = req.body;
+    const { title, description, category, icon, image, status } = req.body;
 
     const program = await Program.create({
-      title,
-      description,
-      image,
-      status,
-    });
+  title,
+  description,
+  category,
+  icon,
+  image,
+  status,
+});
 
     res.status(201).json(program);
   } catch (error) {

@@ -10,13 +10,21 @@ import News from "../pages/public/News/News";
 import Contact from "../pages/public/Contact/Contact";
 import Donate from "../pages/public/Donate/Donate";
 import NewsDetails from "../pages/public/News/NewsDetails";
+import Login from "../pages/admin/Login/Login";
+import ProtectedRoute from "./ProtectedRoute";
+import Dashboard from "../pages/admin/Dashboard/Dashboard";
+import AdminLayout from "../components/layout/AdminLayout";
+import ProgramsAdmin from "../pages/admin/Programs/Programs";
+import EventsAdmin from "../pages/admin/Events/Events";
+import GalleryAdmin from "../pages/admin/Gallery/Gallery";
+import NewsAdmin from "../pages/admin/News/News";
 
 import NotFound from "../pages/NotFound";
-
 
 function AppRoutes() {
   return (
     <Routes>
+      /* Public routes */
       <Route element={<PublicLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -28,7 +36,18 @@ function AppRoutes() {
         <Route path="/donate" element={<Donate />} />
         <Route path="/news/:id" element={<NewsDetails />} />
         <Route path="*" element={<NotFound />} />
-
+      </Route>
+      {/* ADMIN LOGIN */}
+      <Route path="/admin/login" element={<Login />} />
+      {/* PROTECTED ADMIN */}
+      <Route element={<ProtectedRoute />}>
+        <Route element={<AdminLayout />}>
+          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/admin/programs" element={<ProgramsAdmin />} />
+          <Route path="/admin/events" element={<EventsAdmin />} />
+          <Route path="/admin/gallery" element={<GalleryAdmin />} />
+          <Route path="/admin/news" element={<NewsAdmin />} />
+        </Route>
       </Route>
     </Routes>
   );

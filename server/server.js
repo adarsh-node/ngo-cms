@@ -10,6 +10,7 @@ import galleryRoutes from "./routes/galleryRoutes.js";
 import newsRoutes from "./routes/newsRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use("/api/gallery", galleryRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
   res.json({

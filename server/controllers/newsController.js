@@ -3,7 +3,9 @@ import News from "../models/News.js";
 // Get all news
 const getNews = async (req, res, next) => {
   try {
-    const news = await News.find();
+    const news = await News.find({
+      status: "published",
+    }).sort({ createdAt: -1 });
 
     res.status(200).json(news);
   } catch (error) {
@@ -11,10 +13,13 @@ const getNews = async (req, res, next) => {
   }
 };
 
-// Get one news item
+// Get one news item by id
 const getNewsById = async (req, res, next) => {
   try {
-    const newsItem = await News.findById(req.params.id);
+    const newsItem = await News.findOne({
+      _id: req.params.id,
+      status: "published",
+    });
 
     if (!newsItem) {
       return res.status(404).json({
@@ -28,18 +33,38 @@ const getNewsById = async (req, res, next) => {
   }
 };
 
+const getAdminNews = async (req, res, next) => {
+  try {
+    const news = await News.find().sort({ createdAt: -1 });
+
+    res.status(200).json(news);
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Create news
 const createNews = async (req, res, next) => {
   try {
-    const { title, description, image, author, status } = req.body;
+    const {
+  title,
+  category,
+  description,
+  excerpt,
+  image,
+  author,
+  status,
+} = req.body;
 
     const newsItem = await News.create({
-      title,
-      description,
-      image,
-      author,
-      status,
-    });
+  title,
+  category,
+  description,
+  excerpt,
+  image,
+  author,
+  status,
+});
 
     res.status(201).json(newsItem);
   } catch (error) {
@@ -93,6 +118,7 @@ const deleteNews = async (req, res, next) => {
 export {
   getNews,
   getNewsById,
+  getAdminNews,
   createNews,
   updateNews,
   deleteNews,

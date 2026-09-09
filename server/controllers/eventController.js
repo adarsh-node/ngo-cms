@@ -31,16 +31,25 @@ const getEventById = async (req, res, next) => {
 // Create event
 const createEvent = async (req, res, next) => {
   try {
-    const { title, description, date, location, image, status } = req.body;
+    const {
+  title,
+  description,
+  category,
+  date,
+  location,
+  image,
+  status,
+} = req.body;
 
     const event = await Event.create({
-      title,
-      description,
-      date,
-      location,
-      image,
-      status,
-    });
+  title,
+  description,
+  category,
+  date,
+  location,
+  image,
+  status,
+});
 
     res.status(201).json(event);
   } catch (error) {

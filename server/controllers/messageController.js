@@ -31,11 +31,18 @@ const getMessageById = async (req, res, next) => {
 // Create message
 const createMessage = async (req, res, next) => {
   try {
-    const { name, email, subject, message } = req.body;
+    const {
+  name,
+  email,
+  phone,
+  subject,
+  message,
+} = req.body;
 
     const newMessage = await Message.create({
       name,
       email,
+      phone,
       subject,
       message,
     });

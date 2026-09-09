@@ -8,6 +8,12 @@ const gallerySchema = new mongoose.Schema(
       trim: true,
     },
 
+    category: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
     image: {
       type: String,
       required: true,

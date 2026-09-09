@@ -1,4 +1,4 @@
-import siteConfig from "../../../config/siteConfig";
+import { useState } from "react";
 
 import {
   Mail,
@@ -7,6 +7,11 @@ import {
   Clock,
   Send,
 } from "lucide-react";
+
+import siteConfig from "../../../config/siteConfig";
+
+import { createMessage } from "../../../api/messagesApi.js";
+
 
 const contactInfo = [
   {
@@ -39,7 +44,62 @@ const contactInfo = [
   },
 ];
 
+
 function ContactContent() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+
+    setFormData((previousData) => ({
+      ...previousData,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    setLoading(true);
+    setSuccess("");
+    setError("");
+
+    try {
+      await createMessage(formData);
+
+      setSuccess(
+        "Your message has been sent successfully. We'll get back to you soon."
+      );
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+
+      setError(
+        error.response?.data?.message ||
+          "Failed to send your message. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="bg-slate-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -105,7 +165,10 @@ function ContactContent() {
               </p>
             </div>
 
-            <form className="space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5"
+            >
 
               {/* Name */}
               <div>
@@ -119,7 +182,10 @@ function ContactContent() {
                 <input
                   id="name"
                   type="text"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Enter your name"
+                  required
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
@@ -136,7 +202,10 @@ function ContactContent() {
                 <input
                   id="email"
                   type="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Enter your email"
+                  required
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
@@ -153,6 +222,8 @@ function ContactContent() {
                 <input
                   id="phone"
                   type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="Enter your phone number"
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
@@ -170,7 +241,10 @@ function ContactContent() {
                 <input
                   id="subject"
                   type="text"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="How can we help?"
+                  required
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
@@ -187,22 +261,41 @@ function ContactContent() {
                 <textarea
                   id="message"
                   rows="5"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Write your message..."
+                  required
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none resize-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
+              {/* Success */}
+              {success && (
+                <p className="text-sm text-green-600 bg-green-50 border border-green-200 rounded-lg p-3">
+                  {success}
+                </p>
+              )}
+
+              {/* Error */}
+              {error && (
+                <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
+                  {error}
+                </p>
+              )}
+
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors cursor-pointer"
+                disabled={loading}
+                className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send Message
+                {loading ? "Sending..." : "Send Message"}
+
                 <Send size={18} />
               </button>
 
               <p className="text-xs text-gray-500 text-center">
-                This form will be connected to the backend later.
+                Your message will be securely submitted to our team.
               </p>
 
             </form>

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   BookOpen,
   HeartHandshake,
@@ -7,9 +9,10 @@ import {
   BriefcaseBusiness,
   Leaf,
 } from "lucide-react";
-import { Link } from "react-router-dom";
-import programs from "../../../data/programs";
 
+import { Link } from "react-router-dom";
+
+import { getPrograms } from "../../../api/programsApi.js";
 
 const iconMap = {
   BookOpen,
@@ -21,6 +24,28 @@ const iconMap = {
 };
 
 function ProgramsPreview() {
+  const [programs, setPrograms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const data = await getPrograms();
+
+        setPrograms(data);
+      } catch (error) {
+        console.error(error);
+
+        setError("Failed to load programs.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
+
   return (
     <section className="bg-slate-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -51,39 +76,62 @@ function ProgramsPreview() {
           </Link>
         </div>
 
+        {/* Loading */}
+        {loading && (
+          <p className="text-center text-gray-600">
+            Loading programs...
+          </p>
+        )}
+
+        {/* Error */}
+        {!loading && error && (
+          <p className="text-center text-red-600">
+            {error}
+          </p>
+        )}
+
+        {/* Empty State */}
+        {!loading && !error && programs.length === 0 && (
+          <p className="text-center text-gray-600">
+            No programs available at the moment.
+          </p>
+        )}
+
         {/* Program Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {programs.slice(0, 3).map((program) => {
-            const Icon = iconMap[program.icon];
+        {!loading && !error && programs.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {programs.slice(0, 3).map((program) => {
+              const Icon = iconMap[program.icon] || BookOpen;
 
-            return (
-              <article
-                key={program.id}
-                className="bg-white rounded-2xl border border-gray-200 p-7 hover:-translate-y-1 hover:shadow-lg transition-all"
-              >
-                <div className="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6">
-                  <Icon size={28} />
-                </div>
-
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {program.title}
-                </h3>
-
-                <p className="text-gray-600 leading-relaxed">
-                  {program.description}
-                </p>
-
-                <Link
-                  to="/programs"
-                  className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors"
+              return (
+                <article
+                  key={program._id}
+                  className="bg-white rounded-2xl border border-gray-200 p-7 hover:-translate-y-1 hover:shadow-lg transition-all"
                 >
-                  Learn more
-                  <ArrowRight size={16} />
-                </Link>
-              </article>
-            );
-          })}
-        </div>
+                  <div className="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6">
+                    <Icon size={28} />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {program.title}
+                  </h3>
+
+                  <p className="text-gray-600 leading-relaxed">
+                    {program.description}
+                  </p>
+
+                  <Link
+                    to="/programs"
+                    className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors"
+                  >
+                    Learn more
+                    <ArrowRight size={16} />
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        )}
 
       </div>
     </section>
