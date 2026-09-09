@@ -7,7 +7,7 @@ import {
   Newspaper,
   MessageSquare,
   Settings,
-  Users,
+  Users, 
   LogOut,
   Menu,
   X,
@@ -58,16 +58,16 @@ function AdminLayout() {
       path: "/admin/messages",
       icon: MessageSquare,
     },
-    {
-      name: "Team",
-      path: "/admin/team",
-      icon: Users,
-    },
-    {
-      name: "Settings",
-      path: "/admin/settings",
-      icon: Settings,
-    },
+    // {
+    //   name: "Team",
+    //   path: "/admin/team",
+    //   icon: Users,
+    // },
+    // {
+    //   name: "Settings",
+    //   path: "/admin/settings",
+    //   icon: Settings,
+    // },
   ];
 
   return (
