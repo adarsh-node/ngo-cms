@@ -142,6 +142,29 @@ ngo-cms/
 └── README.md
 ```
 
+## Screenshots
+
+### Public Website
+
+![NGO CMS Home Page](./screenshots/home.png)
+
+### Admin Dashboard
+
+![Admin Dashboard](./screenshots/admin-dashboard.png)
+
+### Program Management
+
+![Program Management](./screenshots/admin-programs.png)
+
+### News Management
+
+![News Management](./screenshots/admin-news.png)
+
+### Message Management
+
+![Message Management](./screenshots/admin-messages.png)
+
+
 ## API Overview
 
 The backend provides RESTful API endpoints for the main CMS resources.
