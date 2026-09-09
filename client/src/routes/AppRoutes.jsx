@@ -18,6 +18,7 @@ import ProgramsAdmin from "../pages/admin/Programs/Programs";
 import EventsAdmin from "../pages/admin/Events/Events";
 import GalleryAdmin from "../pages/admin/Gallery/Gallery";
 import NewsAdmin from "../pages/admin/News/News";
+import Messages from "../pages/admin/Messages/Messages";
 
 import NotFound from "../pages/NotFound";
 
@@ -47,6 +48,7 @@ function AppRoutes() {
           <Route path="/admin/events" element={<EventsAdmin />} />
           <Route path="/admin/gallery" element={<GalleryAdmin />} />
           <Route path="/admin/news" element={<NewsAdmin />} />
+          <Route path="/admin/messages" element={<Messages />} />
         </Route>
       </Route>
     </Routes>
