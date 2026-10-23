@@ -20,12 +20,14 @@ function NewsDetails() {
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [imageFailed, setImageFailed] = useState(false);
 
   useEffect(() => {
     const fetchArticle = async () => {
       try {
         const data = await getNewsById(id);
 
+        setImageFailed(false);
         setArticle(data);
       } catch (error) {
         console.error(error);
@@ -83,37 +85,37 @@ function NewsDetails() {
       year: "numeric",
     }
   );
+  const hasImage = Boolean(article.image && !imageFailed);
 
   return (
     <article className="bg-white">
 
       {/* Hero Image */}
-      <div className="relative h-[300px] md:h-[450px] overflow-hidden">
-        {article.image ? (
+      <div className={`relative overflow-hidden ${hasImage ? "h-[300px] md:h-[450px]" : "bg-slate-50 py-14 sm:py-16"}`}>
+        {hasImage && (
           <img
             src={article.image}
             alt={article.title}
+            onError={() => setImageFailed(true)}
             className="w-full h-full object-cover"
           />
-        ) : (
-          <div className="w-full h-full bg-gray-300" />
         )}
 
-        <div className="absolute inset-0 bg-black/50" />
+        {hasImage && <div className="absolute inset-0 bg-black/50" />}
 
-        <div className="absolute inset-0 flex items-end">
-          <div className="max-w-5xl mx-auto w-full px-6 pb-12 text-white">
+        <div className={hasImage ? "absolute inset-0 flex items-end" : "relative"}>
+          <div className={`mx-auto w-full max-w-5xl px-6 ${hasImage ? "pb-12 text-white" : ""}`}>
 
             <div className="flex flex-wrap items-center gap-4 mb-5">
 
               {article.category && (
-                <span className="inline-flex items-center gap-2 text-sm font-semibold bg-blue-600 px-3 py-1.5 rounded-full">
+                <span className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white">
                   <Tag size={15} />
                   {article.category}
                 </span>
               )}
 
-              <span className="inline-flex items-center gap-2 text-sm text-slate-200">
+                <span className={`inline-flex items-center gap-2 text-sm ${hasImage ? "text-slate-200" : "text-gray-500"}`}>
                 <CalendarDays size={16} />
                 {formattedDate}
               </span>

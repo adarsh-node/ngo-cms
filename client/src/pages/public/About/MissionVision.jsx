@@ -17,7 +17,7 @@ const content = [
 
 function MissionVision() {
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-slate-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Section Header */}
@@ -44,7 +44,7 @@ function MissionVision() {
             return (
               <article
                 key={item.title}
-                className="rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition-shadow"
+                className="rounded-2xl border border-gray-200 bg-white p-6 transition-colors hover:border-[#c8d7cc] sm:p-8"
               >
                 <div className="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6">
                   <Icon size={28} />

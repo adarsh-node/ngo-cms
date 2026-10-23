@@ -35,7 +35,7 @@ function EventsPreview() {
   }, []);
 
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-slate-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}

@@ -7,7 +7,7 @@ function PublicLayout() {
     <>
       <Navbar />
 
-      <main className="min-h-screen">
+      <main className="public-site min-h-screen">
         <Outlet />
       </main>
 

@@ -49,19 +49,19 @@ function OurStory() {
           {/* Visual / Timeline */}
           <div className="relative">
 
-            <div className="bg-slate-900 rounded-2xl p-8 md:p-10 text-white">
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 md:p-10">
 
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <CalendarDays size={24} />
                 </div>
 
                 <div>
-                  <p className="text-blue-400 text-sm font-semibold uppercase tracking-wider">
+                  <p className="text-blue-700 text-sm font-semibold uppercase tracking-wider">
                     Our Journey
                   </p>
 
-                  <h3 className="text-xl font-bold">
+                  <h3 className="text-xl font-semibold text-gray-900">
                     Growing Together
                   </h3>
                 </div>
@@ -71,14 +71,14 @@ function OurStory() {
               <div className="space-y-7">
 
                 <div className="flex gap-4">
-                  <div className="w-3 h-3 rounded-full bg-blue-400 mt-2 shrink-0" />
+                  <div className="mt-2 h-3 w-3 shrink-0 rounded-full bg-blue-600" />
 
                   <div>
-                    <p className="font-semibold">
+                    <p className="font-semibold text-gray-900">
                       Community Beginnings
                     </p>
 
-                    <p className="text-slate-400 mt-1">
+                    <p className="mt-1 text-sm leading-6 text-gray-600">
                       Started with a focus on understanding and responding
                       to local community needs.
                     </p>
@@ -86,14 +86,14 @@ function OurStory() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-3 h-3 rounded-full bg-blue-400 mt-2 shrink-0" />
+                  <div className="mt-2 h-3 w-3 shrink-0 rounded-full bg-blue-600" />
 
                   <div>
-                    <p className="font-semibold">
+                    <p className="font-semibold text-gray-900">
                       Expanding Our Programs
                     </p>
 
-                    <p className="text-slate-400 mt-1">
+                    <p className="mt-1 text-sm leading-6 text-gray-600">
                       Introduced initiatives focused on education, support,
                       and community development.
                     </p>
@@ -101,14 +101,14 @@ function OurStory() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-3 h-3 rounded-full bg-blue-400 mt-2 shrink-0" />
+                  <div className="mt-2 h-3 w-3 shrink-0 rounded-full bg-blue-600" />
 
                   <div>
-                    <p className="font-semibold">
+                    <p className="font-semibold text-gray-900">
                       Building the Future
                     </p>
 
-                    <p className="text-slate-400 mt-1">
+                    <p className="mt-1 text-sm leading-6 text-gray-600">
                       Continuing to collaborate with communities and
                       supporters to create sustainable impact.
                     </p>

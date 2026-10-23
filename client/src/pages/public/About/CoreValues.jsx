@@ -38,7 +38,7 @@ const values = [
 
 function CoreValues() {
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-slate-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -65,7 +65,7 @@ function CoreValues() {
             return (
               <article
                 key={value.id}
-                className="group rounded-2xl border border-gray-200 p-7 text-center hover:-translate-y-1 hover:shadow-lg transition-all"
+                className="group rounded-2xl border border-gray-200 bg-white p-6 text-center transition-colors hover:border-[#c8d7cc] sm:p-7"
               >
                 <div className="w-14 h-14 mx-auto rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   <Icon size={27} />

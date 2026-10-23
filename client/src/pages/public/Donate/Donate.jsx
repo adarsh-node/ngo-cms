@@ -18,7 +18,7 @@ function Donate() {
   };
 
   return (
-    <section className="min-h-[80vh] bg-slate-100 py-20 px-6">
+    <section className="min-h-[80vh] bg-slate-50 py-16 px-6 sm:py-20">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
@@ -42,12 +42,12 @@ function Donate() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
           {/* Left Side */}
-          <div className="bg-slate-900 text-white rounded-2xl p-8">
+          <div className="rounded-2xl bg-[#194f38] p-8 text-white">
             <h2 className="text-2xl font-bold mb-5">
               Your Support Matters
             </h2>
 
-            <p className="text-slate-300 leading-relaxed mb-8">
+            <p className="leading-relaxed text-white/80 mb-8">
               Every contribution, big or small, helps us reach more people
               and strengthen our community programs.
             </p>
@@ -55,22 +55,22 @@ function Donate() {
             <div className="space-y-5">
               <div className="flex gap-3">
                 <ShieldCheck
-                  className="text-blue-400 shrink-0"
+                  className="text-[#c6ddcc] shrink-0"
                   size={22}
                 />
 
-                <p className="text-slate-300">
+                <p className="text-white/80">
                   Donations will be processed securely.
                 </p>
               </div>
 
               <div className="flex gap-3">
                 <Heart
-                  className="text-blue-400 shrink-0"
+                  className="text-[#c6ddcc] shrink-0"
                   size={22}
                 />
 
-                <p className="text-slate-300">
+                <p className="text-white/80">
                   Your contribution directly supports our initiatives.
                 </p>
               </div>
@@ -78,7 +78,7 @@ function Donate() {
           </div>
 
           {/* Donation Form */}
-          <div className="bg-white rounded-2xl p-8 shadow-sm">
+          <div className="rounded-2xl border border-[#e4e7e1] bg-white p-6 sm:p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Choose Donation Amount
             </h2>
@@ -123,23 +123,18 @@ function Donate() {
 
             {/* Donor Details */}
             <div className="space-y-4">
-              <input
-                type="text"
-                placeholder="Full name"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              />
-
-              <input
-                type="email"
-                placeholder="Email address"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              />
-
-              <input
-                type="tel"
-                placeholder="Phone number"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              />
+              <div>
+                <label htmlFor="donorName" className="mb-2 block text-sm font-medium text-gray-700">Full name</label>
+                <input id="donorName" type="text" placeholder="Full name" className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+              </div>
+              <div>
+                <label htmlFor="donorEmail" className="mb-2 block text-sm font-medium text-gray-700">Email address</label>
+                <input id="donorEmail" type="email" placeholder="Email address" className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+              </div>
+              <div>
+                <label htmlFor="donorPhone" className="mb-2 block text-sm font-medium text-gray-700">Phone number</label>
+                <input id="donorPhone" type="tel" placeholder="Phone number" className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" />
+              </div>
             </div>
 
             <button

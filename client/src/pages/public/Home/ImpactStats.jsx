@@ -3,15 +3,15 @@ import impactStats from "../../../data/impactStats";
 
 function ImpactStats() {
   return (
-    <section className="bg-blue-600 text-white py-16 px-6">
+    <section className="border-y border-[#e4e7e1] bg-slate-50 py-14 px-6">
       <div className="max-w-7xl mx-auto">
 
         <div className="text-center mb-10">
-          <p className="text-blue-100 font-semibold uppercase tracking-wider text-sm mb-3">
+          <p className="text-blue-700 font-semibold uppercase tracking-wider text-sm mb-3">
             Our Impact
           </p>
 
-          <h2 className="text-3xl md:text-4xl font-bold">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">
             Together, We Are Making a Difference
           </h2>
         </div>
@@ -22,11 +22,11 @@ function ImpactStats() {
               key={stat.id}
               className="text-center"
             >
-              <p className="text-4xl md:text-5xl font-bold">
+              <p className="text-4xl font-semibold tracking-tight text-blue-700 md:text-5xl">
                 {stat.value}
               </p>
 
-              <p className="mt-2 text-blue-100">
+              <p className="mt-2 text-sm text-gray-600">
                 {stat.label}
               </p>
             </div>

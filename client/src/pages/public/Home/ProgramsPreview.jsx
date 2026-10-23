@@ -47,7 +47,7 @@ function ProgramsPreview() {
   }, []);
 
   return (
-    <section className="bg-slate-50 py-20 px-6">
+    <section id="our-work" className="bg-slate-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Section Header */}
